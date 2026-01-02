@@ -1,7 +1,10 @@
 package com.onayquem.CRUD.controller;
 
 import com.onayquem.CRUD.model.Usuario;
-import com.onayquem.CRUD.repository.UsuarioRepository;
+import com.onayquem.CRUD.service.UsuarioService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,32 +12,30 @@ import java.util.List;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
-	private final UsuarioRepository repository;
 	
-	public UsuarioController(UsuarioRepository repository) {
-		this.repository = repository;
-	}
+	private final UsuarioService service;
 	
-	@PostMapping(consumes = "application/json")
-	public Usuario criar (@RequestBody Usuario usuario) {
-		return repository.save(usuario);
-	}
-	
+	public UsuarioController(UsuarioService service) {
+		this.service = service;
+	}	
+	@PostMapping
+	public Usuario criar (@RequestBody @Valid Usuario usuario) {
+		return service.salvar(usuario);
+	}	
 	@GetMapping
 	public List<Usuario> listar(){
-		return repository.findAll();
+		return service.listar();
 	}
 	@GetMapping("/{id}")
 	public Usuario buscar(@PathVariable Long id) {
-		return repository.findById(id).orElse(null);
+		return service.buscarPorid(id);
 	}
 	@PutMapping("/{id}")
-	public Usuario atualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
-		usuario.setId(id);
-		return repository.save(usuario);
+	public Usuario atualizar(@PathVariable Long id, @RequestBody @Valid Usuario usuario) {
+		return service.atualizar(id, usuario);
 	}
 	@DeleteMapping("{id}")
 	public void deletar(@PathVariable Long id) {
-		repository.deleteById(id);
+		service.deletar(id);
 	}
 }
