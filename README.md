@@ -29,9 +29,17 @@ API REST simples para cadastro de usuários (CRUD), desenvolvida com **Spring Bo
 2. Rodar a aplicação:
 mvn spring-boot:run
 API disponível em: `http://localhost:8081`
-Testes
 
-Testado com Thunder Client.
+Os endpoints foram testados utilizando:
+- **Thunder Client**
+- **Swagger UI**
+Documentação Swagger
+
+Após subir a aplicação, acesse:
+`http://localhost:8081/swagger-ui.html`
+ou
+`http://localhost:8081/swagger-ui/index.html`
+
 
 Autor
 
