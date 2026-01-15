@@ -43,6 +43,6 @@ ou
 
 ## Autor
 
-Pedro Onayquen  
-https://github.com/PedroOnayquen
+Pedro Onayquem  
+https://github.com/PedroOnayquem
 
